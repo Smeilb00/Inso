@@ -1,6 +1,6 @@
 package ins0.Modelo.Vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ClienteVo {
 	
@@ -8,21 +8,19 @@ public class ClienteVo {
 	private String apellido;
 	private String contrasenha;
 	private String direccion;
-	private String dNI;
-	private String email;
+	private String dNI;;
 	private Date fechaNacimiento;
 	private String nombre;
 	private int telefono;
 	
 	public ClienteVo() {}
 	
-	public ClienteVo(int iD,  String apellido, String contrasenha, String direccion, String dNI, String email, Date fechaNacimiento, String nombre, int telefono) {
+	public ClienteVo(int iD, String nombre, String apellido, int telefono, String direccion, String dNI, Date fechaNacimiento, String contrasenha) {
 		this.iD = iD;
 		this.apellido = apellido;
 		this.contrasenha = contrasenha;
 		this.direccion = direccion;
 		this.dNI = dNI;
-		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -57,12 +55,6 @@ public class ClienteVo {
 	}
 	public void setdNI(String dNI) {
 		this.dNI = dNI;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;

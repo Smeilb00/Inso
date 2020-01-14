@@ -10,6 +10,7 @@ import com.toedter.calendar.JSpinnerDateEditor;
 
 import ins0.Controlador.DataConnection;
 import ins0.Modelo.Dao.ClienteDao;
+import ins0.Modelo.Dao.PedidoDao;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -29,7 +30,7 @@ public class VentanaCancelar extends JFrame {
 	private JPanel Principal;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtNumeroPedido;
-
+	public int idpedido = 0;
 	public VentanaCancelar() {
 		setTitle("Gestionar Stock");
 		Image icon = new ImageIcon(getClass().getResource("../o2.png")).getImage();
@@ -49,7 +50,8 @@ public class VentanaCancelar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DataConnection conectar = new DataConnection();
 				Connection conn = conectar.DataConn();
-				
+				PedidoDao pedido = new PedidoDao();
+				pedido.eliminarPedido(conn, Integer.parseInt(txtNumeroPedido.getText()));
 			}
 		});
 		
@@ -115,6 +117,8 @@ public class VentanaCancelar extends JFrame {
 				array.add(rs.getString(7));
 				array.add(rs.getString(8));
 				array.add(rs.getString(9));
+				
+				
 			}
 			rs.close();
 			stmt.close();

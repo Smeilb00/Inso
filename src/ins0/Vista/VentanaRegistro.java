@@ -3,28 +3,19 @@ package ins0.Vista;
 import java.awt.BorderLayout;
 
 import javax.swing.*;
-import javax.swing.border.*;
 
 import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JSpinnerDateEditor;
 
 import ins0.Controlador.DataConnection;
 import ins0.Modelo.Dao.TrabajadorDao;
+import ins0.Modelo.Vo.ClienteVo;
+import ins0.Modelo.Vo.TrabajadorVo;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 
@@ -184,19 +175,22 @@ public class VentanaRegistro extends JFrame {
 					} else if (fecha.get(Calendar.MONTH) > calendar.getCalendar().get(Calendar.MONTH)) {
 						mayor = true;
 					}
-				} else if ((fecha.get(Calendar.DAY_OF_MONTH) - calendar.getCalendar().get(Calendar.YEAR)) > 18) {
+				} else if ((fecha.get(Calendar.YEAR) - calendar.getCalendar().get(Calendar.YEAR)) > 18) {
 					mayor = true;
 				}
 				if (mayor) {
 
 					if (rdbtnCliente.isSelected()) {
-						t1.addCliente(conn, txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),
-								txtDireccion.getText(), txtDNI.getText(), calendar.getDate(), txtContrasenha.getText());
+						
+						java.sql.Date fechaNacimiento = new java.sql.Date(calendar.getDate().getTime());
+						ClienteVo cliente = new ClienteVo(0,txtNombre.getText(),txtApellido.getText(),Integer.parseInt(txtTelefono.getText()),txtDireccion.getText(),txtDNI.getText(),fechaNacimiento,txtContrasenha.getText());
+						t1.addCliente(conn, cliente);
 					} else if (rdbtnTrabajador.isSelected()) {
 						if (VentanaLogin.getConectado().equals("Administrador")) {
-							t1.addTrabajador(conn, txtPosicion.getSelectedItem().toString(), txtNombre.getText(),
+							TrabajadorVo trabajador = new TrabajadorVo(txtPosicion.getSelectedItem().toString(), txtNombre.getText(),
 									txtApellido.getText(), txtDNI.getText(), txtDireccion.getText(),
-									txtTelefono.getText(), txtContrasenha.getText());
+									Integer.parseInt(txtTelefono.getText()), 0 , txtContrasenha.getText());
+							t1.addTrabajador(conn,trabajador);
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"Solo el Administrador puede añadir nuevos trabajadores.");

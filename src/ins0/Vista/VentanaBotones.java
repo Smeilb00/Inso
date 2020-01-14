@@ -109,6 +109,7 @@ public class VentanaBotones extends JFrame {
 					DataConnection conectar = new DataConnection();
                     Connection conn = conectar.DataConn();
                     conectar.aceptarPedidos(conn);
+                    JOptionPane.showMessageDialog(null, "Se han aceptado todos los pedidos para los que había stock suficiente.");
 				}
 				
 			}
@@ -132,6 +133,21 @@ public class VentanaBotones extends JFrame {
 		btnConsultarEstadoPedido.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnConsultarEstadoPedido.setBounds(70, 287, 180, 30);
 		desktopPane.add(btnConsultarEstadoPedido);
+		
+		JButton btnEliminarUsuario = new JButton("Eliminar Usuario");
+		btnEliminarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(VentanaLogin.getConectado().equals("Cliente")) {
+					JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta acción.");
+				}else {
+				VentanaRemoveUser v8 = new VentanaRemoveUser();
+				v8.setVisible(true);
+				}
+			}
+		});
+		btnEliminarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEliminarUsuario.setBounds(330, 287, 180, 30);
+		desktopPane.add(btnEliminarUsuario);
 		
 	}
 }

@@ -3,28 +3,39 @@ package ins0.Vista;
 import java.awt.BorderLayout;
 
 import javax.swing.*;
+import javax.swing.border.*;
+
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JSpinnerDateEditor;
 
 import ins0.Controlador.DataConnection;
 import ins0.Modelo.Dao.TrabajadorDao;
+import ins0.Modelo.Vo.ClienteVo;
+import ins0.Modelo.Vo.TrabajadorVo;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.awt.event.ActionEvent;
 
-public class VentanaModificar extends JFrame {
+public class VentanaRemoveUser extends JFrame {
 	private JPanel Principal;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private JTextField textField;
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private JTextField textField_1;
 
-	public VentanaModificar() {
-		setTitle("Modificar Usuarios");
-		setBounds(100, 100, 493, 264);
+	public VentanaRemoveUser() {
+		setTitle("Eliminar usuario");
+		setBounds(100, 100, 480, 179);
 		Image icon = new ImageIcon(getClass().getResource("../o2.png")).getImage();
         setIconImage(icon);
 		Principal = new JPanel();
@@ -35,35 +46,11 @@ public class VentanaModificar extends JFrame {
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(70, 130, 180));
 		Principal.add(desktopPane, BorderLayout.CENTER);
-		JButton btnPedido = new JButton("Modificar Datos");
+		JButton btnPedido = new JButton("Eliminar usuario");
 		
 		btnPedido.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnPedido.setBounds(168, 157, 137, 30);
+		btnPedido.setBounds(162, 87, 137, 30);
 		desktopPane.add(btnPedido);
-		
-		JLabel lblCampo = new JLabel("Campo a modificar:");
-		lblCampo.setForeground(new Color(255, 255, 255));
-		lblCampo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCampo.setBounds(60, 86, 137, 19);
-		desktopPane.add(lblCampo);
-		
-		JLabel lblValor = new JLabel("Modificacion:");
-		lblValor.setForeground(new Color(255, 255, 255));
-		lblValor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValor.setBounds(60, 117, 137, 19);
-		desktopPane.add(lblValor);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setColumns(10);
-		textField.setBounds(207, 116, 194, 20);
-		desktopPane.add(textField);
-		
-		JComboBox BoxCampo = new JComboBox();
-		BoxCampo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxCampo.setModel(new DefaultComboBoxModel(new String[] {"Direccion", "Telefono", "Contrasenha"}));
-		BoxCampo.setBounds(207, 87, 194, 20);
-		desktopPane.add(BoxCampo);
 		
 		JRadioButton rdbtnTrabajador = new JRadioButton("Trabajador");
 		rdbtnTrabajador.setForeground(new Color(255, 255, 255));
@@ -101,13 +88,11 @@ public class VentanaModificar extends JFrame {
 				Connection conn = conectar.DataConn();
 				TrabajadorDao trabajador = new TrabajadorDao();
 				String dNI = textField_1.getText();
-				String tipo = BoxCampo.getSelectedItem().toString();
-				String valor = textField.getText();
 				
 				if(rdbtnTrabajador.isSelected()) {
-					trabajador.modifyTrabajador(conn, tipo, valor, dNI);
+					trabajador.removeTrabajador(conn, dNI);
 				}else if(rdbtnCliente.isSelected()){
-					trabajador.modifyCliente(conn, tipo, valor, dNI);
+					trabajador.removeCliente(conn, dNI);
 				}
 			}
 		});

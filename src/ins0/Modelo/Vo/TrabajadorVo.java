@@ -15,7 +15,7 @@ public class TrabajadorVo {
 	
 	public TrabajadorVo() {}
 	
-	public TrabajadorVo(int iD,  String apellido, String contrasenha, String direccion, String dNI, String posicion, String nombre, int telefono) {
+	public TrabajadorVo(String posicion, String nombre, String apellido, String dNI, String direccion, int telefono, int iD, String contrasenha) {
 		this.iD = iD;
 		this.apellido = apellido;
 		this.contrasenha = contrasenha;

@@ -193,12 +193,12 @@ public class VentanaPedido extends JFrame {
 		BoxTeclado.setBounds(616, 279, 160, 20);
 		desktopPane.add(BoxTeclado);
 
-		JComboBox BoxAuriculares = new JComboBox();
-		BoxAuriculares.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxAuriculares.setModel(new DefaultComboBoxModel(new String[] { "No", "17 - 60W", "18 - 40W" }));
-		BoxAuriculares.setToolTipText("");
-		BoxAuriculares.setBounds(616, 309, 160, 20);
-		desktopPane.add(BoxAuriculares);
+		JComboBox BoxAltavoces = new JComboBox();
+		BoxAltavoces.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		BoxAltavoces.setModel(new DefaultComboBoxModel(new String[] { "No", "17 - 60W", "18 - 40W" }));
+		BoxAltavoces.setToolTipText("");
+		BoxAltavoces.setBounds(616, 309, 160, 20);
+		desktopPane.add(BoxAltavoces);
 
 		JComboBox BoxMonitor = new JComboBox();
 		BoxMonitor.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -297,10 +297,15 @@ public class VentanaPedido extends JFrame {
 						relleno = BoxRaton.getSelectedItem().toString().split(" - ");
 						articulos += relleno[0]+",";
 					}
-					if (BoxAuriculares.getSelectedItem().toString() != "No") {
-						relleno = BoxAuriculares.getSelectedItem().toString().split(" - ");
+					if (BoxAltavoces.getSelectedItem().toString() != "No") {
+						relleno = BoxAltavoces.getSelectedItem().toString().split(" - ");
 						articulos += relleno[0]+",";
 					}
+					if(BoxSistemaOperativo.getSelectedItem().toString() != "No") {
+						relleno = BoxSistemaOperativo.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
+					}
+					
 				} else {
 					relleno = BoxPCCompleto.getSelectedItem().toString().split(" - ");
 					articulos += relleno[0]+",";
