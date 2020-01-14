@@ -2,6 +2,7 @@ package ins0.Modelo.Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -167,7 +168,62 @@ public class TrabajadorDao {
 		}
 	}
 
-	public void gestionarAlmacen() {
+	public void aceptarPedidos(Connection conn) {
+        PreparedStatement stmt;
+        PreparedStatement stmt2;
+        PreparedStatement stmt3;
+        PreparedStatement stmt4;
+        PreparedStatement stmt5;
+        ResultSet rs2;
+        ResultSet rs4;
+        try {
+            stmt = conn.prepareStatement("SELECT NumPedido, Articulos FROM pedidos WHERE Estado = ? ");
+            stmt.setString(1, "Pendiente");
+            ResultSet rs = stmt.executeQuery();
 
+            while(rs.next()) {
+                String[] articulos;
+                articulos = (rs.getString(2).split(","));
+                boolean aceptar = true;
+                for(int i = 0; i<articulos.length;i++) {
+                    stmt2 = conn.prepareStatement("SELECT Stock FROM articulos WHERE ID = ?");
+                    stmt2.setInt(1, Integer.parseInt(articulos[i]));
+                    rs2 = stmt2.executeQuery();
+
+                    if(rs2.next() && rs2.getInt(1)<=0) {
+                        aceptar=false;
+                    }
+
+                }
+                if(aceptar) {
+                    stmt3 = conn.prepareStatement("UPDATE pedidos SET estado=?, IDTrabajador=? WHERE Estado='Pendiente'");
+                    stmt3.setString(1, "Aceptado");
+                    stmt3.setInt(2,VentanaLogin.getID());
+                    stmt3.executeUpdate();
+                    stmt3.close();
+                    
+                    for(int i = 0; i<articulos.length;i++) {
+                    	 stmt4 = conn.prepareStatement("SELECT Stock FROM articulos WHERE ID = ?");
+                         stmt4.setInt(1, Integer.parseInt(articulos[i]));
+                         rs4 = stmt4.executeQuery();
+                         while(rs4.next()) {
+                        	 stmt5 = conn.prepareStatement("UPDATE articulos SET Stock=? WHERE ID=?");
+                        	 stmt5.setInt(1,rs4.getInt(1)-1);
+                        	 stmt5.setInt(2, Integer.parseInt(articulos[i]));
+                        	 stmt5.executeUpdate();
+                         }
+
+
+                    }
+                }
+            }
+
+
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	}
+
 }

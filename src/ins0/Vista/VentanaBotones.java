@@ -7,6 +7,9 @@ import javax.swing.border.*;
 import com.mysql.jdbc.PreparedStatement;
 
 import ins0.Controlador.DataConnection;
+import ins0.Modelo.Dao.ArticuloDao;
+import ins0.Modelo.Dao.PedidoDao;
+import ins0.Modelo.Dao.TrabajadorDao;
 
 import java.awt.event.*;
 import java.sql.Connection;
@@ -38,7 +41,9 @@ public class VentanaBotones extends JFrame {
 					JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta acción.");
 				}else {
 					VentanaRegistro v1 = new VentanaRegistro();
+					
 					v1.setVisible(true);
+					
 				}
 				
 			}
@@ -78,6 +83,10 @@ public class VentanaBotones extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(VentanaLogin.getConectado().equals("Almacen") || VentanaLogin.getConectado().equals("Administrador")){
 					VentanaReposicion v4 = new VentanaReposicion();
+					ArticuloDao articuloDao = new ArticuloDao();
+					DataConnection conectar = new DataConnection();
+                    Connection conn = conectar.DataConn();
+					articuloDao.getStock(conn, v4);
 					v4.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta acción.");
@@ -108,7 +117,8 @@ public class VentanaBotones extends JFrame {
 				}else {
 					DataConnection conectar = new DataConnection();
                     Connection conn = conectar.DataConn();
-                    conectar.aceptarPedidos(conn);
+                    TrabajadorDao trabajador = new TrabajadorDao();
+                    trabajador.aceptarPedidos(conn);
                     JOptionPane.showMessageDialog(null, "Se han aceptado todos los pedidos para los que había stock suficiente.");
 				}
 				
@@ -124,8 +134,8 @@ public class VentanaBotones extends JFrame {
 				VentanaEstadoPedidos v7 = new VentanaEstadoPedidos();
 				DataConnection conectar = new DataConnection();
 				Connection conn = conectar.DataConn();
-				
-				conectar.getEstadoPedido(conn, VentanaLogin.getID(), v7);
+				PedidoDao pedidoDao = new PedidoDao();
+				pedidoDao.getEstadoPedido(conn, VentanaLogin.getID(), v7);
 				
 				v7.setVisible(true);
 			}
