@@ -1,6 +1,6 @@
 package ins0.Modelo.Vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PedidoVo {
 	

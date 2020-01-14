@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import ins0.Modelo.Vo.PedidoVo;
 import ins0.Modelo.Vo.TrabajadorVo;
 import ins0.Vista.VentanaLogin;
 
@@ -17,9 +18,11 @@ public class TrabajadorDao {
 		return retorno;
 	}
 	
-	public void addPedido() {
-		
+	public void addPedido(Connection conn,PedidoVo pedido) {
+		PedidoDao pedidoDao = new PedidoDao();
+		pedidoDao.iniciarPedido(conn, pedido);
 	}
+ 
 	public void addCliente(Connection conn, String txtNombre, String txtApellido, String txtTelefono, String txtDireccion, String txtDNI, Date calendar, String txtContrasenha) {
 		try {
 			if (VentanaLogin.getConectado().equals("Trabajador")) {
