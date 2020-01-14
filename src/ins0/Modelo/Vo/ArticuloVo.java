@@ -14,14 +14,14 @@ public class ArticuloVo {
 	
 	public ArticuloVo() {}	
 	
-	public ArticuloVo(int iD, String numeroSerie, String tipo, String subTipo, String marca, int stock, Date fechaLLegada) {
+	public ArticuloVo(int iD, String numeroSerie, String tipo, String subTipo, String marca, Date fechaLLegada, int stock) {
 		this.iD = iD;
 		this.numeroSerie = numeroSerie;
 		this.tipo = tipo;
 		this.subTipo = subTipo;
 		this.marca = marca;
-		this.stock = stock;
 		this.fechaLLegada = fechaLLegada;
+		this.stock = stock;
 	}
 	public int getiD() {
 		return iD;

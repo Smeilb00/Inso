@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JSpinnerDateEditor;
 
 import ins0.Controlador.DataConnection;
+import ins0.Modelo.Dao.ArticuloDao;
 import ins0.Modelo.Dao.ClienteDao;
 import ins0.Modelo.Dao.PedidoDao;
 import ins0.Modelo.Vo.ClienteVo;
@@ -142,72 +143,75 @@ public class VentanaPedido extends JFrame {
 		JComboBox BoxProcesadores = new JComboBox();
 		BoxProcesadores.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BoxProcesadores.setModel(new DefaultComboBoxModel(
-				new String[] { "No", "Intel 7\u00AA generaci\u00F3n", "Intel de 5\u00AA generaci\u00F3n" }));
+				new String[] { "No", "1 - Intel 7\u00AA generaci\u00F3n", "2 - Intel de 5\u00AA generaci\u00F3n" }));
 		BoxProcesadores.setToolTipText("");
 		BoxProcesadores.setBounds(616, 102, 160, 20);
 		desktopPane.add(BoxProcesadores);
 
 		JComboBox BoxRAM = new JComboBox();
 		BoxRAM.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxRAM.setModel(new DefaultComboBoxModel(new String[] { "No", "8Gb", "16Gb" }));
+		BoxRAM.setModel(new DefaultComboBoxModel(new String[] { "No", "3 - 8Gb", "4 - 16Gb" }));
 		BoxRAM.setToolTipText("");
 		BoxRAM.setBounds(616, 132, 160, 20);
 		desktopPane.add(BoxRAM);
 
 		JComboBox BoxHDD = new JComboBox();
 		BoxHDD.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxHDD.setModel(new DefaultComboBoxModel(new String[] { "No", "WD 250 Gb", "WD 500 Gb", "WD 1 Tb" }));
+		BoxHDD.setModel(
+				new DefaultComboBoxModel(new String[] { "No", "5 - WD 250 Gb", "6 - WD 500 Gb", "7 - WD 1 Tb" }));
 		BoxHDD.setToolTipText("");
 		BoxHDD.setBounds(616, 162, 160, 20);
 		desktopPane.add(BoxHDD);
 
 		JComboBox BoxSSD = new JComboBox();
 		BoxSSD.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxSSD.setModel(new DefaultComboBoxModel(new String[] { "No", "WD 124 Gb", "WD 248 Gb" }));
+		BoxSSD.setModel(new DefaultComboBoxModel(new String[] { "No", "8 - WD 124 Gb", "9 - WD 248 Gb" }));
 		BoxSSD.setToolTipText("");
 		BoxSSD.setBounds(616, 189, 160, 20);
 		desktopPane.add(BoxSSD);
 
 		JComboBox BoxPlacaBase = new JComboBox();
 		BoxPlacaBase.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxPlacaBase.setModel(new DefaultComboBoxModel(new String[] { "No", "ATX", "MiniATX", "BX" }));
+		BoxPlacaBase.setModel(new DefaultComboBoxModel(new String[] { "No", "10 - ATX", "11 - MiniATX", "12 - BX" }));
 		BoxPlacaBase.setToolTipText("");
 		BoxPlacaBase.setBounds(616, 219, 160, 20);
 		desktopPane.add(BoxPlacaBase);
 
 		JComboBox BoxRaton = new JComboBox();
 		BoxRaton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxRaton.setModel(new DefaultComboBoxModel(new String[] { "No", "Logitech G203 8000DPI", "Logitech B100" }));
+		BoxRaton.setModel(
+				new DefaultComboBoxModel(new String[] { "No", "13 - Logitech G203 8000DPI", "14 - Logitech B100" }));
 		BoxRaton.setToolTipText("");
 		BoxRaton.setBounds(616, 249, 160, 20);
 		desktopPane.add(BoxRaton);
 
 		JComboBox BoxTeclado = new JComboBox();
 		BoxTeclado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxTeclado.setModel(new DefaultComboBoxModel(new String[] { "No", "Logitech MK850", "Mars Gaming MCP 118" }));
+		BoxTeclado.setModel(
+				new DefaultComboBoxModel(new String[] { "No", "15 - Logitech MK850", "16 - Mars Gaming MCP 118" }));
 		BoxTeclado.setToolTipText("");
 		BoxTeclado.setBounds(616, 279, 160, 20);
 		desktopPane.add(BoxTeclado);
 
 		JComboBox BoxAuriculares = new JComboBox();
 		BoxAuriculares.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxAuriculares.setModel(new DefaultComboBoxModel(new String[] { "No", "160W", "40W" }));
+		BoxAuriculares.setModel(new DefaultComboBoxModel(new String[] { "No", "17 - 60W", "18 - 40W" }));
 		BoxAuriculares.setToolTipText("");
 		BoxAuriculares.setBounds(616, 309, 160, 20);
 		desktopPane.add(BoxAuriculares);
 
 		JComboBox BoxMonitor = new JComboBox();
 		BoxMonitor.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxMonitor.setModel(new DefaultComboBoxModel(
-				new String[] { "No", "FullHD 60 Hz", "Wide Screen", "FullHD 144Hz", "2K", "4K" }));
+		BoxMonitor.setModel(new DefaultComboBoxModel(new String[] { "No", "19 - FullHD 60 Hz", "20 - Wide Screen",
+				"21 - FullHD 144Hz", "22 - 2K", "23 - 4K" }));
 		BoxMonitor.setToolTipText("");
 		BoxMonitor.setBounds(616, 339, 160, 20);
 		desktopPane.add(BoxMonitor);
 
 		JComboBox BoxSistemaOperativo = new JComboBox();
 		BoxSistemaOperativo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BoxSistemaOperativo.setModel(new DefaultComboBoxModel(new String[] { "No", "Windows 7 ", "Windows 8",
-				"Windows 8.1", "Windows 10", "Windows 10 pro", "Ubuntu ", "Debian" }));
+		BoxSistemaOperativo.setModel(new DefaultComboBoxModel(new String[] { "No", "24 - Windows 7 ", "25 - Windows 8",
+				"26 - Windows 8.1", "27 - Windows 10", "28 - Windows 10 pro", "29 - Ubuntu ", "30 - Debian" }));
 		BoxSistemaOperativo.setToolTipText("");
 		BoxSistemaOperativo.setBounds(616, 369, 160, 20);
 		desktopPane.add(BoxSistemaOperativo);
@@ -236,7 +240,7 @@ public class VentanaPedido extends JFrame {
 
 		JComboBox BoxPCCompleto = new JComboBox();
 		BoxPCCompleto.setModel(new DefaultComboBoxModel(
-				new String[] { "No", "Predefinido Oficina", "Predefinido Casa", "Predefinido Gaming" }));
+				new String[] { "No", "31 - Predefinido Oficina", "32 - Predefinido Casa", "33 - Predefinido Gaming" }));
 		BoxPCCompleto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BoxPCCompleto.setToolTipText("");
 		BoxPCCompleto.setBounds(204, 284, 160, 20);
@@ -255,39 +259,56 @@ public class VentanaPedido extends JFrame {
 				DataConnection conectar = new DataConnection();
 				Connection conn = conectar.DataConn();
 				String articulos = "";
+				ArticuloDao art1 = new ArticuloDao();
 
+				String[] relleno = new String[2];
 				if (BoxPCCompleto.getSelectedItem().toString().equals("No")) {
 					if (BoxHDD.getSelectedItem().toString() != "No") {
-						articulos += BoxHDD.getSelectedItem().toString() + ",";
+						relleno = BoxHDD.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxRAM.getSelectedItem().toString() != "No") {
-						articulos += BoxRAM.getSelectedItem().toString() + ",";
+						relleno = BoxRAM.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
+
 					if (BoxProcesadores.getSelectedItem().toString() != "No") {
-						articulos += BoxProcesadores.getSelectedItem().toString() + ",";
+						relleno = BoxProcesadores.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
+
 					if (BoxMonitor.getSelectedItem().toString() != "No") {
-						articulos += BoxMonitor.getSelectedItem().toString() + ",";
+						relleno = BoxMonitor.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxSSD.getSelectedItem().toString() != "No") {
-						articulos += BoxSSD.getSelectedItem().toString() + ",";
+						relleno = BoxSSD.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxTeclado.getSelectedItem().toString() != "No") {
-						articulos += BoxTeclado.getSelectedItem().toString() + ",";
+						relleno = BoxTeclado.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxPlacaBase.getSelectedItem().toString() != "No") {
-						articulos += BoxPlacaBase.getSelectedItem().toString() + ",";
+						relleno = BoxPlacaBase.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxRaton.getSelectedItem().toString() != "No") {
-						articulos += BoxRaton.getSelectedItem().toString() + ",";
+						relleno = BoxRaton.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 					if (BoxAuriculares.getSelectedItem().toString() != "No") {
-						articulos += BoxAuriculares.getSelectedItem().toString();
+						relleno = BoxAuriculares.getSelectedItem().toString().split(" - ");
+						articulos += relleno[0]+",";
 					}
 				} else {
-					articulos += BoxPCCompleto.getSelectedItem().toString();
-				}
+					relleno = BoxPCCompleto.getSelectedItem().toString().split(" - ");
+					articulos += relleno[0]+",";
 
+				}
+				
+				String articulosanhadir = articulos.substring(0, articulos.length()-1);
+				
 				PedidoVo pedido;
 				Calendar hoy = Calendar.getInstance();
 				java.sql.Date fecha = new java.sql.Date(hoy.get(Calendar.YEAR) - 1900, hoy.get(Calendar.MONTH),
@@ -295,12 +316,12 @@ public class VentanaPedido extends JFrame {
 
 				if (VentanaLogin.getConectado() == "Cliente") {
 
-					pedido = new PedidoVo(0, VentanaLogin.getID(), 0, fecha, txtDireccionEntrega.getText(), articulos,
+					pedido = new PedidoVo(0, VentanaLogin.getID(), 0, fecha, txtDireccionEntrega.getText(), articulosanhadir,
 							txtNombreCliente.getText(), "Compra", "Pendiente");
 
 				} else {
 
-					pedido = new PedidoVo(VentanaLogin.getID(), 0, 0, fecha, txtDireccionEntrega.getText(), articulos,
+					pedido = new PedidoVo(VentanaLogin.getID(), 0, 0, fecha, txtDireccionEntrega.getText(), articulosanhadir,
 							txtNombreCliente.getText(), "Compra", "Pendiente");
 
 				}

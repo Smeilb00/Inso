@@ -49,8 +49,7 @@ public class VentanaCancelar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DataConnection conectar = new DataConnection();
 				Connection conn = conectar.DataConn();
-				ClienteDao c1 = new ClienteDao();
-				c1.eliminarPedido(conn, Integer.parseInt(txtNumeroPedido.getText()));
+				
 			}
 		});
 		
