@@ -1,29 +1,14 @@
 package ins0.Vista;
 
-import java.awt.BorderLayout;
-
 import javax.swing.*;
-import javax.swing.border.*;
-
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JSpinnerDateEditor;
-
 import ins0.Controlador.DataConnection;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
 
 public class VentanaLogin extends JFrame {
 	
@@ -33,21 +18,6 @@ public class VentanaLogin extends JFrame {
 	private JLabel lblLogin;
 	private static String conectado = "";
 	private static int iD = 0;
-	
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	
 	public static String getConectado() {
 		return VentanaLogin.conectado;
